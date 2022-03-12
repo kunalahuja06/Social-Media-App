@@ -1,45 +1,40 @@
-import React, { useState } from "react";
-import { Menu, Segment } from "semantic-ui-react";
-
+import React, { useState } from "react"
+import {Menu} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 function MenuBar() {
-  const [activeItem,setActiveItem]=useState('');
-
- const  handleItemClick = (e, { name }) => setActiveItem(name)
-
+  const pathnsubstringame=window.location.pathname
+  const path=pathnsubstringame==='/'?'home':pathnsubstringame.substring(1)
+    const [activeItem, setActiveItem] = useState(path);
+  const handleItemClick = (e, { name }) => setActiveItem(name);
 
     return (
-      <div>
-        <Menu pointing secondary>
+      <Menu pointing secondary size="massive" color="teal">
+        <Menu.Item
+          name="home"
+          active={activeItem === "home"}
+          onClick={handleItemClick}
+          as={Link}
+          to="/"
+        />
+        <Menu.Menu position="right">
           <Menu.Item
-            name="home"
-            active={activeItem === "home"}
-            onClick={this.handleItemClick}
+            name="login"
+            active={activeItem === "login"}
+            onClick={handleItemClick}
+            as={Link}
+            to="/login"
           />
           <Menu.Item
-            name="messages"
-            active={activeItem === "messages"}
-            onClick={this.handleItemClick}
+            name="register"
+            active={activeItem === "register"}
+            onClick={handleItemClick}
+            as={Link}
+            to="/register"
           />
-          <Menu.Item
-            name="friends"
-            active={activeItem === "friends"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Menu position="right">
-            <Menu.Item
-              name="logout"
-              active={activeItem === "logout"}
-              onClick={this.handleItemClick}
-            />
-          </Menu.Menu>
-        </Menu>
-
-        <Segment>
-          <img src="/images/wireframe/media-paragraph.png" />
-        </Segment>
-      </div>
+        </Menu.Menu>
+      </Menu>
     );
   }
-}
+
 
 export default MenuBar
