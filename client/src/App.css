@@ -36,10 +36,14 @@
     transform: rotate(360deg);
   }
 }
-/* .row{
-  margin-bottom: 20px;
-  color:blue;
-} */
+
+.createPost{
+  margin-left: 10px;
+  padding:10px;
+  border: 0.1rem solid lightgray;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px lightgray;
+}
 .page-title{
   display: block !important;
   text-align: center;

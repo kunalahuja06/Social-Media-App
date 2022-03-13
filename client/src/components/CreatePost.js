@@ -33,17 +33,18 @@ function CreatePost() {
   return (
     <>
       <Form onSubmit={onSubmit}>
-        <h2>Create a post:</h2>
+        <h2>What's on your mind?</h2>
         <Form.Field>
           <Form.Input
-            placeholder="Hi World!"
+          className="input"
+            placeholder="Hello World!"
             name="body"
             onChange={onChange}
             value={values.body}
             error={error ? true : false}
           />
           <Button type="submit" color="teal">
-            Submit
+            Post
           </Button>
         </Form.Field>
       </Form>
