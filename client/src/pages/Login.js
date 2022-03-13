@@ -8,7 +8,7 @@ import { useAuth } from "../authContext";
 
 
 function Login(props) {
-  const [{user},dispatch]=useAuth()
+  const [,dispatch]=useAuth()
   const navigate = useNavigate();
   const [errors, setErrors] = useState({})
 

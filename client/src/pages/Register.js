@@ -18,7 +18,6 @@ function Register(props) {
    });
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update(_, result) {
-      console.log(result)
       dispatch({
         type: "LOGIN",
         payload: result.data.register,
