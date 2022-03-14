@@ -6,6 +6,7 @@ import { useForm } from "../util/hooks";
 import { FETCH_POSTS } from "../util/graphql";
 
 function CreatePost() {
+
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
     body: "",
   });
@@ -51,7 +52,7 @@ function CreatePost() {
       {error && (
         <div className="ui error message" style={{ marginBottom: 20 }}>
           <ul className="list">
-            <li>{error.graphQLErrors[0].messages}</li>
+            <li>{error.graphQLErrors[0].message}</li>
           </ul>
         </div>
       )}

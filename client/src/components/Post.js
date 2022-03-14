@@ -1,15 +1,13 @@
 import React from 'react'
 import moment from 'moment'
-import {Card,Icon,Label,Image, Button} from 'semantic-ui-react'
+import {Card,Icon,Label,Image, Button, Popup} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
+import {useAuth} from '../authContext'
+import LikePost from './LikePost'
+import DeleteButton from './DeleteButton'
 //component for rendering single post
 function Post({post:{body,createdAt,id,username,likeCount,commentCount,likes}}) {
-const likePost=()=>{
-
-}
-const commentonPost=()=>{
-
-}
+  const [{user}]=useAuth()
   return (
     <Card fluid>
       <Card.Content>
@@ -25,22 +23,23 @@ const commentonPost=()=>{
         <Card.Description>{body}</Card.Description>
       </Card.Content>{" "}
       <Card.Content extra>
-        <Button as="div" labelPosition="right" onClick={likePost}>
-          <Button color="teal" basic>
-            <Icon name="heart" />
-          </Button>
-          <Label as="a" basic color="teal" pointing="left">
-            {likeCount}
-          </Label>
-        </Button>
-        <Button as="div" labelPosition="right" onClick={commentonPost}>
-          <Button color="blue" basic>
-            <Icon name="comments" />
-          </Button>
-          <Label as="a" basic color="blue" pointing="left">
-            {commentCount}
-          </Label>
-        </Button>
+        <LikePost post={{ id, likes, likeCount }} />
+        <Popup
+         inverted
+          content="comment on this post"
+          trigger={
+            <Button labelPosition="right" as={Link} to={`/posts/${id}`}>
+              <Button color="blue" basic>
+                <Icon name="comments" />
+              </Button>
+              <Label basic color="blue" pointing="left">
+                {commentCount}
+              </Label>
+            </Button>
+          }
+        />
+
+        {user && user.username === username && <DeleteButton postId={id} />}
       </Card.Content>
     </Card>
   );
